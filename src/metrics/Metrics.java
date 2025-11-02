@@ -6,7 +6,7 @@ import java.util.Map;
 public class Metrics {
 
     private final Map<String, Long> executionTimes;
-    private final Map<String, Long> operationCounts;
+    private  final Map<String, Long> operationCounts;
 
     public Metrics() {
         this.executionTimes = new HashMap<>();
@@ -17,7 +17,6 @@ public class Metrics {
         this.executionTimes.put(algorithmName, timeNanos);
     }
 
-    // МЕТОД, КОТОРЫЙ ТРЕБУЕТСЯ: recordTime
     public void recordTime(String algorithmName, long timeNanos) {
         this.setExecutionTime(algorithmName, timeNanos);
     }
@@ -26,9 +25,7 @@ public class Metrics {
         this.operationCounts.put(operationName, count);
     }
 
-    // МЕТОД, КОТОРЫЙ ТРЕБУЕТСЯ: incrementCounter
     public void incrementCounter(String counterName) {
-        // Увеличивает счетчик на 1.
         this.operationCounts.merge(counterName, 1L, Long::sum);
     }
 

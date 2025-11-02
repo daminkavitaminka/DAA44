@@ -19,7 +19,7 @@ public class Edge {
         return v;
     }
 
-    public int getWeight() {
+    public int  getWeight() {
         return weight;
     }
 }

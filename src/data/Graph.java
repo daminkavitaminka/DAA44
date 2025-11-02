@@ -7,13 +7,12 @@ import java.util.HashMap;
 
 public class Graph {
 
-    private final int V; // Количество вершин
-    private final List<Edge> edges; // Список всех ребер
-    private final int source; // Исходная вершина
-    private final String weightModel; // Модель веса ("edge" или другая)
-    private final boolean directed; // Направленный ли граф
+    private final int V;
+    private final List<Edge> edges;
+    private final int source;
+    private final String weightModel;
+    private final boolean directed;
 
-    // Структура для представления графа (списки смежности)
     private final Map<Integer, List<Edge>> adj;
 
     public Graph(int V, List<Edge> edges, int source, String weightModel, boolean directed) {
@@ -49,9 +48,22 @@ public class Graph {
         return adj;
     }
 
-    public boolean isDirected() {
+    public List<Edge> getAdj(int u) {
+        return adj.get(u);
+    }
+
+    public  boolean isDirected() {
         return directed;
     }
 
-    // ... другие методы ...
+    public Map<Integer, List<Edge>> getReverseAdj() {
+        Map<Integer, List<Edge>> reverseAdj = new HashMap<>();
+        for (int i = 0; i < V; i++) {
+            reverseAdj.put(i, new ArrayList<>());
+        }
+        for (Edge edge : edges) {
+            reverseAdj.get(edge.getV()).add(new Edge(edge.getV(), edge.getU(), edge.getWeight()));
+        }
+        return reverseAdj;
+    }
 }
